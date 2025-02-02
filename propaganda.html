@@ -1,0 +1,27 @@
+---
+layout: home
+title: Propaganda Archive
+---
+<div class="gallery">
+    <img src="/yearzero/images/propaganda_01.jpg" alt="Propaganda Poster 1">
+    <img src="/yearzero/images/propaganda_02.jpg" alt="Propaganda Poster 2">
+    <img src="/yearzero/images/propaganda_03.jpg" alt="Propaganda Poster 3">
+</div>
+<div class="links">
+    <a href="/yearzero/">Return to Resistance Hub</a>
+    <a href="/yearzero/truth">The Truth</a>
+    <a href="/yearzero/surveillance">Surveillance Network</a>
+</div>
+
+<script>
+    // Optional: Add a hover effect to the gallery images
+    const images = document.querySelectorAll('.gallery img');
+    images.forEach(img => {
+        img.addEventListener('mouseover', () => {
+            img.style.borderColor = 'white';
+        });
+        img.addEventListener('mouseout', () => {
+            img.style.borderColor = 'red';
+        });
+    });
+</script>

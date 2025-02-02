@@ -1,0 +1,25 @@
+---
+layout: home
+title: The Collapse
+---
+<div class="journal">
+    <h2>Entry 47: The Fall of Sector 9</h2>
+    <p>The streets are empty. The air is thick with ash. The Bureau of Morality has abandoned us.</p>
+    <h2>Entry 52: The Resistance Rises</h2>
+    <p>We found each other in the ruins. Together, we will rebuild. Together, we will resist.</p>
+</div>
+<div class="links">
+    <a href="/yearzero/">Return to Resistance Hub</a>
+    <a href="/yearzero/truth">The Truth</a>
+    <a href="/yearzero/propaganda">Propaganda Archive</a>
+</div>
+
+<script>
+    // Optional: Add a typewriter effect to the journal entries
+    const journal = document.querySelector('.journal');
+    journal.style.visibility = 'hidden';
+    setTimeout(() => {
+        journal.style.visibility = 'visible';
+        journal.style.animation = 'typewriter 4s steps(40)';
+    }, 1000);
+</script>

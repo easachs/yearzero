@@ -1,0 +1,17 @@
+title: THE TRUTH IS NOT A CRIME
+email: 
+description: >-
+  THE TRUTH IS NOT A CRIME
+baseurl: "/yearzero"
+url: "https://easachs.github.io"
+
+google_analytics: "G-RS80H21YWV"
+
+remote_theme: jekyll/minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+minima:
+  skin: dark

@@ -1,0 +1,121 @@
+---
+---
+
+@import
+  "minima/skins/{{ site.minima.skin | default: 'classic' }}",
+  "minima/initialize";
+
+body {
+    background: black;
+    color: white;
+    font-family: monospace;
+    text-align: center;
+    padding: 20px;
+}
+
+// index
+
+.manifesto {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+.countdown {
+    font-size: 2em;
+    margin: 40px 0;
+}
+
+// truth
+
+.timeline {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: left;
+}
+
+.timeline h2 {
+    color: red;
+}
+
+.timeline p {
+    margin: 10px 0;
+}
+
+// surveillance
+
+.map {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.map img {
+    width: 100%;
+    border: 2px solid red;
+}
+
+.description {
+    margin: 20px 0;
+}
+
+// propaganda
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.gallery img {
+    width: 200px;
+    border: 2px solid red;
+}
+
+// collapse
+
+.journal {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: left;
+}
+
+.journal h2 {
+    color: red;
+}
+
+.journal p {
+    margin: 10px 0;
+}
+
+// join
+
+.message {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.links {
+    margin-top: 50px;
+}
+
+.links a {
+    color: red;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+
+img {
+    border: 1px solid #bbbbbb;
+}
+
+.site-header,
+.site-footer {
+    border: 0;
+}
+
+.feed-subscribe {
+    display: none;
+}
+

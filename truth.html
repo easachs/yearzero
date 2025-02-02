@@ -1,0 +1,30 @@
+---
+layout: home
+title: The Truth
+---
+<div class="timeline">
+    <h2>2023: The New Doctrine</h2>
+    <p>The government enacts the New Doctrine, merging church and state. Dissent is outlawed.</p>
+    <h2>2025: The Purge</h2>
+    <p>Mass arrests and executions of "moral deviants" begin. The Bureau of Morality is established.</p>
+    <h2>2027: The Collapse</h2>
+    <p>Economic and environmental collapse leads to widespread unrest. The resistance forms.</p>
+</div>
+<div class="links">
+    <a href="/yearzero/">Return to Resistance Hub</a>
+    <a href="/yearzero/surveillance">Surveillance Network</a>
+    <a href="/yearzero/propaganda">Propaganda Archive</a>
+</div>
+
+<script>
+    // Optional: Add a glitch effect to the timeline text
+    const timeline = document.querySelector('.timeline');
+    timeline.addEventListener('mouseover', () => {
+        timeline.style.color = 'red';
+        timeline.style.textShadow = '0 0 5px red';
+    });
+    timeline.addEventListener('mouseout', () => {
+        timeline.style.color = 'white';
+        timeline.style.textShadow = 'none';
+    });
+</script>
