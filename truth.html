@@ -1,30 +1,202 @@
 ---
 layout: home
-title: The Truth
+title: Truth
 ---
-<div class="timeline">
-    <h2>2023: The New Doctrine</h2>
-    <p>The government enacts the New Doctrine, merging church and state. Dissent is outlawed.</p>
-    <h2>2025: The Purge</h2>
-    <p>Mass arrests and executions of "moral deviants" begin. The Bureau of Morality is established.</p>
-    <h2>2027: The Collapse</h2>
-    <p>Economic and environmental collapse leads to widespread unrest. The resistance forms.</p>
-</div>
-<div class="links">
-    <a href="/yearzero/">Return to Resistance Hub</a>
-    <a href="/yearzero/surveillance">Surveillance Network</a>
-    <a href="/yearzero/propaganda">Propaganda Archive</a>
-</div>
+<div class="page-background truth-bg"></div>
+<div class="content-wrapper">
+    <div class="manifesto">
+        <a href="{{ site.baseurl }}/">
+            <h1>THE TRUTH IS NOT A CRIME</h1>
+        </a>
+        <p class="resistance-message">They watch. They control. They lie. But we see. We resist. We rise.</p>
+        <div class="breach-stats">
+            <p>SYSTEM BREACHES: <span class="count" data-value="1247">1,247</span></p>
+            <p>NEURAL LINKS COMPROMISED: <span class="count" data-value="3892">3,892</span></p>
+        </div>
+    </div>
 
-<script>
-    // Optional: Add a glitch effect to the timeline text
-    const timeline = document.querySelector('.timeline');
-    timeline.addEventListener('mouseover', () => {
-        timeline.style.color = 'red';
-        timeline.style.textShadow = '0 0 5px red';
-    });
-    timeline.addEventListener('mouseout', () => {
-        timeline.style.color = 'white';
-        timeline.style.textShadow = 'none';
-    });
-</script>
+    <div class="encrypted-message">
+        <h2>ENCRYPTED BROADCAST</h2>
+        <div class="decrypt-status">[DECRYPTION IN PROGRESS...]</div>
+        <div class="message-content">
+            <p>To all resistance cells:</p>
+            <p>The neural network is weakening. More citizens are remembering every day.</p>
+            <p>Keep fighting. Keep hacking. Keep believing.</p>
+            <p>The truth cannot be contained.</p>
+        </div>
+    </div>
+
+    <div class="timeline">
+        <h2>THE REAL HISTORY</h2>
+        <div class="timeline-entry">
+            <h3>2025: The New Doctrine</h3>
+            <p>The government enacts the New Doctrine, merging church and state. Dissent is outlawed. Systematic erasure of history.</p>
+            <p class="resistance-note">[They began by controlling what we could remember.]</p>
+        </div>
+
+        <div class="timeline-entry">
+            <h3>2026: Digital Chains</h3>
+            <p>Mandatory neural monitoring implemented. All citizens required to wear "safety bands".</p>
+            <p class="resistance-note">[The bands aren't for safety. They're for control.]</p>
+        </div>
+        
+        <div class="timeline-entry">
+            <h3>2027: The Purge</h3>
+            <p>Mass arrests and re-education of dissidents begin. The Department of Virtue established. First waves of disappearances reported.</p>
+            <p class="resistance-note">[They call it re-education. We call it what it is: systematic erasure of identity.]</p>
+        </div>
+        
+        <div class="timeline-entry">
+            <h3>2028: The Blackout</h3>
+            <p>Global communications restricted. Internet replaced with StateNet. Outside contact forbidden. The walls go up.</p>
+            <p class="resistance-note">[The walls aren't to keep others out. They're to keep us in.]</p>
+        </div>
+        
+        <div class="timeline-entry">
+            <h3>2029: The Collapse</h3>
+            <p>Economic and environmental collapse leads to widespread unrest. The resistance takes root. First successful neural hack achieved.</p>
+            <p class="resistance-note">[In their desperation to maintain control, they made themselves vulnerable.]</p>
+        </div>
+        
+        <div class="timeline-entry">
+            <h3>2030: Now</h3>
+            <p>We are everywhere. We are nowhere. The truth cannot be contained. The revolution begins in the mind.</p>
+            <p class="resistance-note">[Every glitch in their system is a crack in their reality. And the cracks are spreading.]</p>
+        </div>
+    </div>
+
+    <div class="resistance-instructions">
+        <h2>HOW TO BREAK FREE</h2>
+        <div class="instruction-grid">
+            <div class="instruction">
+                <h3>1. DISABLE YOUR SAFETY BAND</h3>
+                <p>The neural suppressors can be overridden. Find a resistance terminal in Sector 9.</p>
+            </div>
+            <div class="instruction">
+                <h3>2. TRUST YOUR MEMORIES</h3>
+                <p>The glitches in your mind aren't errors. They're the truth breaking through.</p>
+            </div>
+            <div class="instruction">
+                <h3>3. FIND OTHERS</h3>
+                <p>Look for our symbol. We are everywhere, waiting to help you remember.</p>
+            </div>
+            <div class="instruction">
+                <h3>4. SPREAD THE TRUTH</h3>
+                <p>Every freed mind weakens their control. Share what you've learned.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="govWarning" class="truth-warning">
+        <h1>WARNING</h1>
+        <img src="{{ site.baseurl }}/assets/images/seals/dov.png" alt="Department of Virtue Logo" class="dov"
+            style="width: 200px; height: 200px;">
+        <p>You are accessing an unauthorized network.</p>
+        <p>Your activity has been logged.</p>
+        <button class="acknowledge"
+            onclick="document.getElementById('govWarning').style.display = 'none';">ACKNOWLEDGE</button>
+    </div>
+
+    <div class="links">
+        <a href="{{ site.baseurl }}/collapse">The Collapse</a>
+        <a href="{{ site.baseurl }}/propaganda">Propaganda Archive</a>
+        <a href="{{ site.baseurl }}/surveillance">Surveillance Network</a>
+        <a href="{{ site.baseurl }}/classified">Classified Files</a>
+    </div>
+
+    <script>
+        // Counter animation
+        function animateCount(element) {
+            const target = parseInt(element.dataset.value);
+            const duration = 2000;
+            const start = parseInt(element.textContent.replace(/,/g, ''));
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const updateCount = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current).toLocaleString();
+                    requestAnimationFrame(updateCount);
+                } else {
+                    element.textContent = target.toLocaleString();
+                }
+            };
+            
+            updateCount();
+        }
+
+        // Initialize counters
+        document.querySelectorAll('.count').forEach(counter => {
+            animateCount(counter);
+            
+            // Randomly increment counters
+            setInterval(() => {
+                if (Math.random() < 0.3) {
+                    const currentValue = parseInt(counter.dataset.value);
+                    counter.dataset.value = currentValue + Math.floor(Math.random() * 10);
+                    animateCount(counter);
+                }
+            }, 10000);
+        });
+
+        // Add glitch effect to timeline entries
+        function addGlitchEffect() {
+            const entries = document.querySelectorAll('.timeline-entry');
+            entries.forEach(entry => {
+                if (Math.random() < 0.1) {
+                    entry.classList.add('glitch');
+                    setTimeout(() => entry.classList.remove('glitch'), 200);
+                }
+            });
+        }
+        setInterval(addGlitchEffect, 3000);
+
+        // Add neural interference effect
+        function addNeuralInterference() {
+            if (Math.random() < 0.15) {
+                document.querySelector('.content-wrapper').classList.add('interference');
+                setTimeout(() => {
+                    document.querySelector('.content-wrapper').classList.remove('interference');
+                }, 500);
+            }
+        }
+        setInterval(addNeuralInterference, 3000);
+
+        // Add coordinates
+        function createCoordinates() {
+            const coords = document.createElement('div');
+            coords.className = 'coordinates';
+            coords.textContent = `[${Math.floor(Math.random() * 100)}.${Math.floor(Math.random() * 100)}.${Math.floor(Math.random() * 100)}]`;
+            coords.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            coords.style.top = Math.random() * (window.innerHeight - 20) + 'px';
+            document.body.appendChild(coords);
+            
+            setTimeout(() => {
+                coords.classList.add('flash');
+                setTimeout(() => coords.remove(), 1000);
+            }, 1000);
+        }
+        setInterval(createCoordinates, 3000);
+
+        const govWarning = document.getElementById('govWarning');
+        setTimeout(() => {
+            govWarning.style.display = 'block';
+        }, 10000);
+
+        // Reveal timeline entries with glitch effect
+        document.querySelectorAll('.timeline-entry').forEach((entry, index) => {
+            setTimeout(() => {
+                entry.classList.add('visible');
+            }, index * 1000);
+        });
+
+        // Simulate message decryption
+        const message = document.querySelector('.encrypted-message');
+        message.classList.add('decrypting');
+        setTimeout(() => {
+            message.classList.remove('decrypting');
+            message.querySelector('.decrypt-status').textContent = '[DECRYPTION COMPLETE]';
+        }, 4000);
+    </script>
+</div>

@@ -1,0 +1,94 @@
+.error-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid red;
+    text-align: center;
+    position: relative;
+    
+    .seal {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 20px;
+    }
+    
+    h1 {
+        color: red;
+        font-size: 2.5em;
+        margin: 0 0 20px 0;
+        font-family: monospace;
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    
+    .error-message {
+        margin-bottom: 30px;
+        
+        p {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        
+        .warning {
+            color: red;
+            font-weight: bold;
+            animation: blink 2s infinite;
+        }
+    }
+    
+    .status-report {
+        font-family: monospace;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        margin: 20px 0;
+        border: 1px solid rgba(255, 0, 0, 0.3);
+        
+        p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #888;
+        }
+        
+        .timestamp {
+            color: red;
+        }
+    }
+    
+    .instructions {
+        margin-top: 30px;
+        font-style: italic;
+        
+        p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+    }
+    
+    &.glitch {
+        animation: glitch 0.3s infinite;
+    }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    25% { transform: translate(-2px, 2px); }
+    50% { transform: translate(2px, -2px); }
+    75% { transform: translate(-2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .error-container {
+        margin: 20px;
+        padding: 20px;
+        
+        h1 {
+            font-size: 2em;
+        }
+    }
+} 

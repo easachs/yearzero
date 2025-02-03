@@ -1,25 +1,49 @@
 ---
+layout: home
+title: 404
 permalink: /404.html
-layout: default
 ---
+<div class="page-background notfound-bg"></div>
+<div class="content-wrapper">
+    <div class="error-container">
+        <a href="{{ site.baseurl }}/">
+            <img src="{{ site.baseurl }}/assets/images/seals/dov.png" alt="Department of Virtue Seal" class="seal">
+        </a>
+        <div class="error-content">
+            <h1>[ERROR CODE 404]</h1>
+            <div class="error-message">
+                <p>CITIZEN ALERT: You have attempted to access a non-existent file.</p>
+                <p>This violation has been logged.</p>
+                <p class="warning">Your neural compliance score has been adjusted.</p>
+            </div>
+            <div class="status-report">
+                <p>STATUS: Access Denied</p>
+                <p>LOCATION: Unknown Sector</p>
+                <p>TIMESTAMP: <span class="timestamp">--:--:--</span></p>
+            </div>
+            <div class="instructions">
+                <p>Return to an authorized zone immediately.</p>
+                <p>Further violations will result in re-education.</p>
+            </div>
+        </div>
+    </div>
+    <div class="links">
+        <a href="{{ site.baseurl }}/">Return to Hub</a>
+    </div>
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+    <script>
+        // Update timestamp
+        function updateTimestamp() {
+            const now = new Date();
+            const timestamp = document.querySelector('.timestamp');
+            timestamp.textContent = now.toTimeString().split(' ')[0];
+        }
+        setInterval(updateTimestamp, 1000);
 
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+        // Add glitch effect on load
+        document.querySelector('.error-container').classList.add('glitch');
+        setTimeout(() => {
+            document.querySelector('.error-container').classList.remove('glitch');
+        }, 1000);
+    </script>
 </div>

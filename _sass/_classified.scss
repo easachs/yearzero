@@ -1,0 +1,283 @@
+// classified
+
+.classified-page {
+    overflow-x: hidden;  // Prevent horizontal scroll
+
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        
+        .seal {
+            width: 100px;
+            height: 100px;
+            animation: pulse 4s infinite;
+        }
+        
+        .title {
+            h2 {
+                color: red;
+                margin: 0 0 10px 0;
+            }
+            
+            .subtitle {
+                color: white;
+                margin: 0 0 5px 0;
+            }
+
+            .key-word {
+                position: relative;
+                z-index: 1;
+                
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(255, 0, 0, 0.3);
+                    animation: pulse 5s infinite;
+                    z-index: -1;
+                }
+            }
+            
+            .warning {
+                color: rgba(255, 0, 0, 0.8);
+                font-size: 0.9em;
+                margin: 0;
+            }
+        }
+    }
+
+    // Container for all files
+    .files-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 20px;
+    }
+
+    // Individual file styling
+    .classified-file {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 0, 0, 0.3);
+        padding: 20px;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        overflow: hidden;  // Contain any animations within
+
+        &:hover {
+            border-color: rgba(255, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .file-header {
+            border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+
+            .file-id {
+                color: red;
+                font-family: monospace;
+                font-size: 0.9em;
+                margin-bottom: 5px;
+            }
+
+            .classification {
+                font-family: monospace;
+                color: rgba(255, 0, 0, 0.8);
+                font-size: 0.8em;
+            }
+        }
+
+        .file-content {
+            font-family: monospace;
+            line-height: 1.4;
+            text-align: left;
+
+            .redacted {
+                background: red;
+                color: transparent;
+                user-select: none;
+                padding: 0 5px;
+
+                &:hover {
+                    background: rgba(255, 0, 0, 0.5);
+                }
+            }
+
+            .footnote {
+                margin: 10px 0 0 0;
+                font-size: 0.8em;
+                color: rgba(255, 255, 255, 0.6);
+                font-style: italic;
+            }
+
+            &.encrypted {
+                filter: blur(4px);
+                user-select: none;
+                pointer-events: none;
+                position: relative;
+                
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(255, 0, 0, 0.1);
+                }
+            }
+            
+            &.decrypting {
+                animation: decrypt 2s forwards;
+            }
+        }
+
+        .decrypt-status {
+            color: rgba(255, 0, 0, 0.8);
+            font-family: monospace;
+            text-align: center;
+            margin-top: 10px;
+            animation: blink 2s infinite;
+        }
+
+        // Declassified state
+        &.declassified {
+            border-color: rgba(0, 255, 0, 0.5);
+            
+            .file-header {
+                border-color: rgba(0, 255, 0, 0.3);
+                
+                .classification {
+                    color: rgba(0, 255, 0, 0.8);
+                }
+            }
+        }
+
+        // Special styling for OMEGA files
+        .classification:contains('OMEGA') {
+            position: relative;
+            
+            &::after {
+                content: '?';
+                position: absolute;
+                right: -15px;
+                top: 0;
+                color: rgba(255, 0, 0, 0.5);
+                animation: pulse 2s infinite;
+            }
+        }
+    }
+
+    // Access denied overlay
+    .access-denied {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 100;
+        color: red;
+        font-family: monospace;
+        
+        .dov-seal {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+    }
+
+    // Access granted notification
+    .access-granted {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 255, 0, 0.2);
+        border: 1px solid #00ff00;
+        padding: 20px;
+        color: #00ff00;
+        font-family: monospace;
+        animation: fadeOut 2s forwards;
+        z-index: 100;
+    }
+
+    // Hidden message that appears when text is selected
+    .file-content::after {
+        content: 'The truth shall set you free';
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        color: transparent;
+        font-size: 0.8em;
+        pointer-events: none;
+    }
+}
+
+.files {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: left;
+}
+
+.file {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid red;
+    cursor: pointer;
+}
+
+.file h2 {
+    color: red;
+}
+
+.file p {
+    margin: 10px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes decrypt {
+    0% { 
+        filter: blur(4px);
+        transform: scale(0.95);
+    }
+    50% {
+        filter: blur(2px);
+        transform: scale(1.02);
+    }
+    100% {
+        filter: blur(0);
+        transform: scale(1);
+    }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}

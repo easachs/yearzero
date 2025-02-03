@@ -1,23 +1,225 @@
 ---
 layout: home
-title: Surveillance Network
+title: Surveillance
 ---
-<div class="map">
-    <img src="/yearzero/images/surveillance_map.jpg" alt="Surveillance Map">
-    <div class="description">
-        <p>Click on a location to access surveillance feeds.</p>
+<div class="page-background surveillance-bg"></div>
+<div class="content-wrapper">
+    <div class="surveillance">
+        <div class="surveillance-header">
+            <a href="{{ site.baseurl }}/">
+                <img src="{{ site.baseurl }}/assets/images/seals/dov.png" alt="Department of Virtue Seal" class="seal">
+            </a>
+            <div class="title">
+                <h2>DEPARTMENT OF VIRTUE</h2>
+            <p class="subtitle">SURVEILLANCE NETWORK</p>
+            <p class="warning">[LIVE FEED STATUS: ACTIVE]</p>
+        </div>
     </div>
-</div>
-<div class="links">
-    <a href="/yearzero/">Return to Resistance Hub</a>
-    <a href="/yearzero/truth">The Truth</a>
-    <a href="/yearzero/propaganda">Propaganda Archive</a>
-</div>
+    <div class="surveillance-map">
+        <div class="image-container">
+            <img src="{{ site.baseurl }}/assets/images/surveillance/01.jpg" alt="Surveillance Map">
+            <div class="sector-markers">
+                <div class="sector" style="top: 15%; left: 25%;" data-sector="1">S1</div>
+                <div class="sector" style="top: 30%; left: 20%;" data-sector="2">S2</div>
+                <div class="sector" style="top: 40%; left: 35%;" data-sector="3">S3</div>
+                <div class="sector compromised" style="top: 25%; left: 50%;" data-sector="4">S4</div>
+                <div class="sector compromised" style="top: 45%; left: 55%;" data-sector="5">S5</div>
+                <div class="sector compromised" style="top: 55%; left: 40%;" data-sector="6">S6</div>
+                <div class="sector" style="top: 35%; left: 70%;" data-sector="7">S7</div>
+                <div class="sector compromised" style="top: 65%; left: 65%;" data-sector="8">S8</div>
+                <div class="sector compromised" style="top: 75%; left: 45%;" data-sector="9">S9</div>
+            </div>
+        </div>
+        <div class="description">
+            <p>ALERT: Surveillance Grid Status</p>
+            <div class="grid-status">
+                <p>Sector 1-3: Full Coverage [ACTIVE]</p>
+                <p>Sector 4-6: Neural Monitoring [COMPROMISED]</p>
+                <p>Sector 7: Drone Patrols [ACTIVE]</p>
+                <p>Sector 8: Facial Recognition [GLITCHED]</p>
+                <p>Sector 9: System Failure [RESISTANCE CONTROLLED]</p>
+                <p class="warning">WARNING: Multiple breaches detected</p>
+            </div>
+        </div>
+        <div class="breach-section">
+            <h3>Recent Breaches</h3>
+            <div class="breach-log">
+                <div class="log-entry">
+                    <span class="timestamp">23:47:12</span>
+                    <span class="message">Neural monitoring failure in Sector 6</span>
+                </div>
+                <div class="log-entry">
+                    <span class="timestamp">22:15:03</span>
+                    <span class="message">Unauthorized access detected in Sector 4</span>
+                </div>
+                <div class="log-entry">
+                    <span class="timestamp">21:33:58</span>
+                    <span class="message">Drone malfunction in Sector 7</span>
+                </div>
+            </div>
+        </div>
+        <div class="network-stats">
+            <h3>Network Statistics</h3>
+            <div class="stat">
+                <span>Neural Monitoring Coverage:</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 73%">73%</div>
+                </div>
+            </div>
+            <div class="stat">
+                <span>Drone Fleet Status:</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 45%">45%</div>
+                </div>
+            </div>
+            <div class="stat">
+                <span>Facial Recognition Accuracy:</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 28%">28%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="links">
+        <a href="{{ site.baseurl }}/truth">The Truth</a>
+        <a href="{{ site.baseurl }}/collapse">The Collapse</a>
+        <a href="{{ site.baseurl }}/propaganda">Propaganda Archive</a>
+        <a href="{{ site.baseurl }}/classified">Classified Files</a>
+    </div>
 
-<script>
-    // Optional: Add interactivity to the map
-    const map = document.querySelector('.map img');
-    map.addEventListener('click', () => {
-        alert("WARNING: Accessing surveillance feeds is prohibited. Your activity has been logged. - Bureau of Morality");
-    });
-</script>
+    <script>
+        // Shared utilities
+        const formatTime = (date = new Date()) => 
+            [date.getHours(), date.getMinutes(), date.getSeconds()]
+            .map(n => n.toString().padStart(2, '0'))
+            .join(':');
+
+        const randomElement = arr => arr[Math.floor(Math.random() * arr.length)];
+
+        // Easter egg: Secret codes entered via sector clicks
+        let sectorClickSequence = [];
+        const secretCodes = {
+            '147': () => document.body.style.filter = 'invert(1)',
+            '369': () => document.querySelector('.surveillance-wrapper').style.transform = 'rotate(180deg)',
+            '159': () => document.querySelectorAll('.sector').forEach(s => s.classList.add('compromised')),
+            '753': () => {
+                const stats = document.querySelectorAll('.progress');
+                stats.forEach(s => {
+                    s.style.width = '100%';
+                    s.textContent = '100%';
+                    s.style.background = '#00ff00';
+                });
+            }
+        };
+
+        function initSurveillance() {
+            document.querySelectorAll('.progress').forEach(initProgressBar);
+            const breachLog = document.querySelector('.breach-log');
+            const updateLog = initBreachLog(breachLog);
+            
+            // Combined sector and image click handlers
+            document.querySelector('.surveillance').addEventListener('click', e => {
+                const sector = e.target.closest('.sector');
+                if (sector) {
+                    handleSectorClick(sector, updateLog);
+                } else if (e.target.tagName === 'IMG' && e.target.src.includes('surveillance')) {
+                    alert("WARNING: Accessing surveillance feeds is prohibited. Your activity has been logged. - Department of Virtue");
+                }
+            });
+        }
+
+        function initProgressBar(bar) {
+            let baseWidth = parseInt(bar.style.width);
+            let trend = Math.random() > 0.5 ? 1 : -1;
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) trend *= -1;
+                baseWidth = Math.max(0, Math.min(100, baseWidth + trend * (Math.random() * 2)));
+                const glitchWidth = baseWidth + (Math.random() * 4 - 2);
+                const finalWidth = Math.max(0, Math.min(100, glitchWidth));
+                
+                bar.style.width = `${finalWidth}%`;
+                bar.textContent = `${Math.round(finalWidth)}%`;
+            }, 2000);
+        }
+
+        function initBreachLog(breachLog) {
+            const messages = [
+                "Neural spike detected in Sector 3",
+                "Camera network disrupted in Sector 8",
+                "Unauthorized thought patterns detected",
+                "Safety band signal lost in Sector 5",
+                "Multiple citizens evading facial recognition",
+                "Anomalous brain activity in Sector 2",
+                "Memory suppression failure in Sector 4",
+                "Unauthorized data transfer detected",
+                "Drone patrol signal interference",
+                "Neural firewall breach attempted",
+                "Thought crime detected in Sector 7",
+                "Mass safety band deactivation event",
+                "Illegal memory backup discovered",
+                "Resistance encryption detected",
+                "Truth Protocol violation in Sector 1",
+                "Unauthorized neural link established",
+                "Historical archive access attempt"
+            ];
+
+            const updateLog = (message, prepend = false) => {
+                const entry = `<div class="log-entry">
+                    <span class="timestamp">${formatTime()}</span>
+                    <span class="message">${message}</span>
+                </div>`;
+                
+                if (prepend) {
+                    breachLog.insertAdjacentHTML('afterbegin', entry);
+                    breachLog.lastElementChild.remove();
+                } else {
+                    breachLog.insertAdjacentHTML('beforeend', entry);
+                }
+            };
+
+            // Initialize with three random entries
+            breachLog.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                updateLog(randomElement(messages));
+            }
+
+            setInterval(() => {
+                updateLog(randomElement(messages), true);
+            }, 8000);
+            
+            return updateLog;  // Return for use in sector clicks
+        }
+
+        function handleSectorClick(sector, updateLog) {
+            const sectorNum = sector.dataset.sector;
+            sectorClickSequence.push(sectorNum);
+            if (sectorClickSequence.length > 3) sectorClickSequence.shift();
+            
+            const code = sectorClickSequence.join('');
+            if (secretCodes[code]) {
+                secretCodes[code]();
+                updateLog(`SECRET CODE ${code} ACTIVATED`, true);
+                return;
+            }
+
+            if (sectorNum === '9') {
+                sector.style.backgroundColor = 'rgba(0, 255, 0, 0.3)';
+                sector.style.borderColor = '#00ff00';
+                sector.textContent = 'FREE';
+                // Easter egg: Clicking sector 9 multiple times
+                sector.dataset.clicks = (parseInt(sector.dataset.clicks || 0) + 1).toString();
+                if (sector.dataset.clicks === '3') {
+                    document.querySelectorAll('.sector').forEach(s => {
+                        if (s !== sector) s.style.opacity = '0.3';
+                    });
+                }
+            } else {
+                sector.classList.toggle('active');
+                updateLog(`Accessing Sector ${sectorNum}... Access ${Math.random() > 0.5 ? 'DENIED' : 'RESTRICTED'}`, true);
+            }
+        }
+
+        initSurveillance();
+    </script>
+</div>

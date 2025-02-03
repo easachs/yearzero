@@ -1,0 +1,229 @@
+// truth
+
+.manifesto {
+    h1 {
+        color: white;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        margin-bottom: 20px;
+    }
+    
+    .resistance-message {
+        font-size: 1.2em;
+    }
+}
+
+.timeline {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    
+    h2 {
+        color: white;
+        margin-bottom: 30px;
+        position: relative;
+        display: inline-block;
+        
+        &::after {
+            content: '[DECRYPTED]';
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 0.6em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            
+            &::after {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+        }
+    }
+    
+    .timeline-entry {
+        margin: 30px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+        
+        &.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .resistance-note {
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 0.9em;
+            position: relative;
+            padding-left: 20px;
+            
+            &::before {
+                content: '>';
+                position: absolute;
+                left: 0;
+                color: white;
+            }
+        }
+    }
+}
+
+.resistance-instructions {
+    @extend .timeline;
+    margin-top: 20px;
+    
+    .instruction-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        
+        .instruction {
+            padding: 20px;
+            
+            h3 {
+                color: white;
+                margin-bottom: 15px;
+                font-size: 1.1em;
+            }
+        }
+    }
+}
+
+.encrypted-message {
+    @extend .timeline;
+    padding: 20px;
+    font-family: monospace;
+    
+    &.decrypting {
+        .message-content {
+            filter: blur(3px);
+        }
+    }
+    
+    h2 {
+        color: white;
+        margin-bottom: 20px;
+    }
+    
+    .message-content {
+        p {
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+    }
+}
+
+@keyframes scanLine {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(1000%); }
+}
+
+.truth-warning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8));
+    color: red;
+    text-align: center;
+    padding-top: 10%;
+    z-index: 5;
+}
+
+.dov {
+    width: 200px;
+    height: 200px;
+}
+
+.acknowledge {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: monospace;
+    margin-top: 20px;
+}
+
+// Animations and effects
+@keyframes neuralInterference {
+    0% { filter: none; }
+    25% { filter: hue-rotate(45deg) brightness(1.5) blur(1px); }
+    50% { filter: invert(0.1) brightness(0.8) blur(2px); }
+    75% { filter: saturate(200%) contrast(150%) blur(1px); }
+    100% { filter: none; }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+    100% { transform: translate(0); }
+}
+
+.content-wrapper {
+    &.interference {
+        animation: neuralInterference 0.3s forwards;
+        pointer-events: none;
+    }
+}
+
+// Breach stats styling
+.breach-stats {
+    margin-top: 20px;
+    font-family: monospace;
+    
+    p {
+        margin: 5px 0;
+        color: rgba(255, 255, 255, 0.8);
+        
+        .count {
+            color: white;
+            font-weight: bold;
+        }
+    }
+}
+
+// Hidden messages
+.timeline-entry {
+    p::selection {
+        background: rgba(255, 255, 255, 0.2);
+        color: transparent;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    }
+    
+    &.glitch {
+        animation: glitch 0.3s infinite;
+        color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+// Coordinates
+.coordinates {
+    position: fixed;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    font-size: 0.8em;
+    z-index: 1;
+    
+    &.flash {
+        color: rgba(255, 255, 255, 0.3);
+        transition: color 0.3s;
+    }
+}

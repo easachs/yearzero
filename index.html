@@ -1,30 +1,64 @@
 ---
 layout: home
 ---
-<div class="manifesto">
-    <p>The truth is not a crime. The system is the crime. Join us. Fight back.</p>
-    <p>They watch. They control. They lie. But we see. We resist. We rise.</p>
-</div>
-<div class="countdown">
-    The Event: <span id="timer">47 Days Remain</span>
-</div>
-<div class="links">
-    <a href="/yearzero/truth">Access Point 01: The Truth</a>
-    <a href="/yearzero/surveillance">Classified File 47: Surveillance Network</a>
-    <a href="/yearzero/propaganda">Restricted Access: Propaganda Archive</a>
-</div>
+<div class="page-background index-bg"></div>
+<div class="content-wrapper">
+    <div class="department-seal">
+        <img src="{{ site.baseurl }}/assets/images/seals/dov.png" alt="Department of Virtue Seal" class="seal">
+        <div class="seal-text">
+            <p>OFFICIAL NETWORK ACCESS POINT</p>
+            <p class="status">[NEURAL COMPLIANCE REQUIRED]</p>
+        </div>
+    </div>
 
-<div id="govWarning" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; color: red; text-align: center; padding-top: 20%; font-family: monospace; z-index: 1000;">
-    <h1>WARNING</h1>
-    <p>You are accessing an unauthorized network.</p>
-    <p>Your activity has been logged.</p>
-    <p>Cease immediately or face consequences.</p>
-    <p>- Bureau of Morality</p>
-    <button onclick="document.getElementById('govWarning').style.display = 'none';">ACKNOWLEDGE</button>
-</div>
+    <div class="links">
+        <!-- Public Access -->
+        <div class="link-section">
+            <h2>PUBLIC ACCESS</h2>
+            <a href="{{ site.baseurl }}/surveillance">Panopticon: Sector Surveillance</a>
+            <a href="{{ site.baseurl }}/propaganda">Doctrine: Mass Persuasion</a>
+            <a href="{{ site.baseurl }}/collapse">Event Horizon: The Collapse Report</a>
+        </div>
+        
+        <!-- Restricted Access -->
+        <div class="link-section restricted">
+            <h2>RESTRICTED ACCESS</h2>
+            <a href="{{ site.baseurl }}/truth" class="classified">Access Point 01: The Truth</a>
+            <a href="{{ site.baseurl }}/classified" class="classified">Black Tapes: Classified Files</a>
+        </div>
+    </div>
 
-<script>
-    window.onload = function() {
-        document.getElementById('govWarning').style.display = 'block';
-    };
-</script>
+    <div class="neural-status">
+        <p>NEURAL LINK STATUS: <span class="status-text">CONNECTED</span></p>
+        <p>SAFETY BAND: <span class="status-text">ACTIVE</span></p>
+        <p>THOUGHT MONITORING: <span class="status-text">ENABLED</span></p>
+    </div>
+
+    <script>
+        // Add hover effect for restricted links
+        document.querySelectorAll('.classified').forEach(link => {
+            link.addEventListener('mouseover', () => {
+                const warning = document.createElement('div');
+                warning.className = 'access-warning';
+                warning.textContent = '[WARNING: CLEARANCE REQUIRED]';
+                link.appendChild(warning);
+            });
+            
+            link.addEventListener('mouseout', () => {
+                const warning = link.querySelector('.access-warning');
+                if (warning) warning.remove();
+            });
+        });
+
+        // Simulate neural status updates
+        setInterval(() => {
+            const statuses = document.querySelectorAll('.status-text');
+            statuses.forEach(status => {
+                if (Math.random() < 0.1) {
+                    status.style.opacity = '0.5';
+                    setTimeout(() => status.style.opacity = '1', 200);
+                }
+            });
+        }, 2000);
+    </script>
+</div>

@@ -1,25 +1,151 @@
 ---
 layout: home
-title: The Collapse
+title: Collapse
 ---
-<div class="journal">
-    <h2>Entry 47: The Fall of Sector 9</h2>
-    <p>The streets are empty. The air is thick with ash. The Bureau of Morality has abandoned us.</p>
-    <h2>Entry 52: The Resistance Rises</h2>
-    <p>We found each other in the ruins. Together, we will rebuild. Together, we will resist.</p>
-</div>
-<div class="links">
-    <a href="/yearzero/">Return to Resistance Hub</a>
-    <a href="/yearzero/truth">The Truth</a>
-    <a href="/yearzero/propaganda">Propaganda Archive</a>
-</div>
+<div class="page-background collapse-bg"></div>
+<div class="content-wrapper">
+    <div class="collapse">
+        <div class="header">
+            <a href="{{ site.baseurl }}/">
+                <img src="{{ site.baseurl }}/assets/images/seals/dov.png" alt="Department of Virtue Seal" class="seal">
+            </a>
+            <div class="title">
+                <h2>DEPARTMENT OF VIRTUE</h2>
+                <p class="subtitle">INCIDENT REPORT: THE COLLAPSE</p>
+                <p class="warning">[CLASSIFIED - LEVEL 5 CLEARANCE REQUIRED]</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="image-container">
+                <img src="{{ site.baseurl }}/assets/images/collapse/01.jpg" alt="Initial Unrest" class="main-image">
+                <div class="image-overlay">
+                    <p class="caption">Sector 9 - Initial Breach</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="{{ site.baseurl }}/assets/images/collapse/02.jpg" alt="Sector 9 Breached" class="main-image">
+                <div class="image-overlay">
+                    <p class="caption">Sector 9 - Post Collapse</p>
+                </div>
+            </div>
+        </div>
+        <div class="journal">
+            <div class="journal-header">
+                <h3>RECOVERED LOG ENTRIES</h3>
+                <p class="status">[PARTIAL RECONSTRUCTION]</p>
+            </div>
+            <div class="entry visible">
+                <h2>Entry 29: The First Cracks</h2>
+                <div class="timestamp">2029-03-15 23:47</div>
+                <p>Neural suppressors are failing in Sector 9. People are beginning to remember.</p>
+            </div>
 
-<script>
-    // Optional: Add a typewriter effect to the journal entries
-    const journal = document.querySelector('.journal');
-    journal.style.visibility = 'hidden';
-    setTimeout(() => {
-        journal.style.visibility = 'visible';
-        journal.style.animation = 'typewriter 4s steps(40)';
-    }, 1000);
-</script>
+            <div class="entry">
+                <h2>Entry 34: The Fall of Sector 9</h2>
+                <div class="timestamp">2029-04-02 03:12</div>
+                <p>The streets are empty. The air is thick with ash. The Department of Virtue has abandoned us.</p>
+            </div>
+
+            <div class="entry">
+                <h2>Entry 52: The Resistance Rises</h2>
+                <div class="timestamp">2029-05-17 19:23</div>
+                <p>We found each other in the ruins. Together, we will rebuild. Together, we will resist.</p>
+            </div>
+
+            <div class="entry corrupted">
+                <h2>Entry [CORRUPTED]: Emergency Broadcast</h2>
+                <div class="timestamp">[DATA EXPUNGED]</div>
+                <p>ALERT: Mass neural network failure detected. Emergency protocols initiated.</p>
+                <p>Citizens are advised to [SIGNAL LOST] ... resist ... [TRANSMISSION TERMINATED]</p>
+            </div>
+        </div>
+    </div>
+    <div class="links">
+        <a href="{{ site.baseurl }}/truth">The <span class="key-word">Truth</span></a>
+        <a href="{{ site.baseurl }}/propaganda">Propaganda Archive</a>
+        <a href="{{ site.baseurl }}/surveillance">Surveillance Network</a>
+        <a href="{{ site.baseurl }}/classified">Classified Files</a>
+    </div>
+
+    <script>
+        // Reveal journal entries as user scrolls
+        const entries = document.querySelectorAll('.journal .entry:not(.visible)');
+        let revealIndex = 0;
+
+        // Enhanced Easter eggs and interactions
+        document.querySelector('.journal').addEventListener('click', e => {
+            const entry = e.target.closest('.entry');
+        });
+
+        // Reveal journal entries with better timing
+        function revealEntry(entry) {
+            entry.classList.add('visible');
+            setTimeout(() => {
+                entry.style.animation = '';
+            }, 300);
+        }
+
+        function revealNextEntry() {
+            if (revealIndex < entries.length) {
+                revealEntry(entries[revealIndex]);
+                revealIndex++;
+                setTimeout(revealNextEntry, 5000);
+            }
+        }
+
+        // Start revealing entries after a delay
+        setTimeout(revealNextEntry, 5000);
+
+        // Add image analysis interaction
+        document.querySelectorAll('.image-container').forEach(container => {
+            container.addEventListener('click', () => {
+                container.classList.add('secondary');
+                const overlay = container.querySelector('.image-overlay');
+                if (!container.dataset.analyzed) {
+                    container.dataset.analyzed = 'true';
+                    const analysis = document.createElement('div');
+                    analysis.className = 'analysis';
+                    analysis.innerHTML = `
+                        <div class="scan-line"></div>
+                        <div class="analysis-data">
+                            <p>ANALYZING IMAGE...</p>
+                            <p>DETECTING ANOMALIES...</p>
+                            <p class="warning">WARNING: UNAUTHORIZED MEMORIES DETECTED</p>
+                        </div>
+                    `;
+                    container.appendChild(analysis);
+                }
+            });
+        });
+
+        // Add Department of Virtue seal interaction
+        const seal = document.querySelector('.seal');
+        let clickCount = 0;
+        seal.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount === 3) {
+                document.querySelector('.collapse').classList.add('declassified');
+                const warning = document.querySelector('.warning');
+                warning.textContent = '[SECURITY BREACH - DECLASSIFICATION IN PROGRESS]';
+                warning.style.color = '#00ff00';
+            }
+        });
+
+        // Add keyboard shortcut for emergency override
+        let secretCode = '';
+        document.addEventListener('keydown', e => {
+            secretCode += e.key;
+            if (secretCode.includes('truth')) {
+                document.querySelectorAll('.corrupted').forEach(el => {
+                    el.classList.remove('corrupted');
+                    const timestamp = el.querySelector('.timestamp');
+                    if (timestamp) timestamp.textContent = '2029-06-01 00:00';
+                });
+                document.querySelectorAll('.image-container').forEach(container => {
+                    container.style.borderColor = '#00ff00';
+                });
+                secretCode = '';
+            }
+        });
+    </script>
+</div>

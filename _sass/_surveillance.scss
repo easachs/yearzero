@@ -1,0 +1,258 @@
+// surveillance
+
+.content-wrapper {
+    .surveillance {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px 0;
+        margin: 0 20px;
+
+        h1 {
+            margin-bottom: 20px;
+        }
+    }
+
+    .surveillance-map {
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+        margin: 20px auto;
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        grid-template-areas: 
+            "image description"
+            "image breaches"
+            "stats stats";
+        gap: 20px;
+        align-items: start;
+        box-sizing: border-box;
+        transition: transform 0.5s ease;  // For rotation easter egg
+
+        // Common styles for boxes
+        %info-box {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .description, .network-stats, .breach-log {
+            @extend %info-box;
+        }
+
+        .image-container {
+            width: 100%;
+            grid-area: image;
+            position: relative;
+            display: block;
+        }
+
+        img {
+            width: 100%;
+            border: 2px solid red;
+            display: block;
+        }
+
+        .description {
+            grid-area: description;
+            padding: 20px;
+
+            p { margin: 5px 0; }
+
+            .grid-status {
+                margin-top: 10px;
+                
+                .warning {
+                    color: red;
+                    font-weight: bold;
+                    animation: blink 2s infinite;
+                }
+            }
+        }
+
+        .sector-markers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+
+            .sector {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                border: 1px solid red;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.8em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                pointer-events: auto;
+                background: rgba(0, 0, 0, 0.3);
+                transform: translate(-50%, -50%);
+                
+                &:hover {
+                    background: rgba(255, 0, 0, 0.3);
+                }
+
+                &.active {
+                    background: rgba(255, 0, 0, 0.5);
+                }
+
+                &.compromised {
+                    border-color: #ff6b6b;
+                    animation: pulse 2s infinite;
+                }
+            }
+        }
+
+        .network-stats {
+            grid-area: stats;
+            padding: 20px;
+
+            .stat {
+                margin: 15px 0;
+
+                span {
+                    display: block;
+                    margin-bottom: 5px;
+                }
+
+                .progress-bar {
+                    width: 100%;
+                    height: 20px;
+                    background: rgba(255, 0, 0, 0.2);
+                    border: 1px solid red;
+
+                    .progress {
+                        height: 100%;
+                        background: red;
+                        text-align: right;
+                        padding-right: 5px;
+                        transition: width 0.3s ease;
+                    }
+                }
+            }
+        }
+
+        .breach-section {
+            grid-area: breaches;
+            
+            h3 {
+                margin-bottom: 10px;
+            }
+        }
+
+        .breach-log {
+            padding: 20px;
+        }
+    }
+
+    .surveillance-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        width: 100%;
+        max-width: 1000px;
+        box-sizing: border-box;
+
+        .seal {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+
+        .title {
+            text-align: left;
+            h2 {
+                font-size: 1.5em;
+                color: red;
+                margin: 0;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+                margin: 5px 0;
+            }
+
+            .warning {
+                color: red;
+                font-size: 0.9em;
+                animation: blink 2s infinite;
+            }
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+            padding: 15px;
+
+            .seal {
+                width: 80px;
+                height: 80px;
+            }
+
+            .title {
+                text-align: center;
+
+                h2 {
+                    font-size: 1.2em;
+                }
+            }
+        }
+    }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .surveillance {
+        padding: 0;
+        width: 100%;
+        max-width: 600px;
+        margin: 10px auto;
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        .surveillance-map {
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+                "image"
+                "description"
+                "breaches"
+                "stats";
+            gap: 10px;
+
+            .image-container {
+                margin: 0;
+            }
+
+            .description {
+                margin-top: 20px;
+            }
+        }
+    }
+}
