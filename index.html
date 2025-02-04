@@ -3,62 +3,37 @@ layout: home
 ---
 <div class="page-background index-bg"></div>
 <div class="content-wrapper">
-    <div class="department-seal">
-        <img src="{{ site.baseurl }}/assets/images/seals/dov.png" alt="Department of Virtue Seal" class="seal">
-        <div class="seal-text">
-            <p>OFFICIAL NETWORK ACCESS POINT</p>
-            <p class="status">[NEURAL COMPLIANCE REQUIRED]</p>
+    <div class="index">
+        <div class="department-seal">
+            <img src="{{ site.baseurl }}/assets/images/seals/dov.png" alt="Department of Virtue Seal" class="seal">
+            <div class="seal-text">
+                <h1><span class="echo">DEPARTMENT</span> OF <span class="echo2">VIRTUE</span></h1>
+                <p class="status">[NEURAL COMPLIANCE SYSTEM: <span class="status-text">ACTIVE</span>]</p>
+            </div>
+        </div>
+
+        <div class="links">
+            <div>
+                <h2><span class="echo">AUTHORIZED</span> ACCESS</h2>
+                <a href="{{ site.baseurl }}/surveillance"><span class="echo2">Panopticon:</span> Sector Surveillance</a>
+                <a href="{{ site.baseurl }}/propaganda">Doctrine: Mass Persuasion</a>
+                <a href="{{ site.baseurl }}/collapse">Event Horizon: The <span class="echo">Collapse Report</span></a>
+            </div>
+
+            <div class="restricted">
+                <h2><span class="echo2">RESTRICTED</span> ACCESS</h2>
+                <a href="{{ site.baseurl }}/truth" class="classified">Access Point 01: The <span class="echo2">Truth</span></a>
+                <a href="{{ site.baseurl }}/classified" class="classified">Black Tapes: Classified Files</a>
+                <a href="{{ site.baseurl }}/memories" class="hidden">The Persistence of Memory</a>
+            </div>
+        </div>
+
+        <div class="neural-status">
+            <p>NEURAL LINK STATUS: <span class="status-text">CONNECTED</span></p>
+            <p>SAFETY BAND: <span class="status-text">ACTIVE</span></p>
+            <p>THOUGHT MONITORING: <span class="status-text">ENABLED</span></p>
         </div>
     </div>
-
-    <div class="links">
-        <!-- Public Access -->
-        <div class="link-section">
-            <h2>PUBLIC ACCESS</h2>
-            <a href="{{ site.baseurl }}/surveillance">Panopticon: Sector Surveillance</a>
-            <a href="{{ site.baseurl }}/propaganda">Doctrine: Mass Persuasion</a>
-            <a href="{{ site.baseurl }}/collapse">Event Horizon: The Collapse Report</a>
-        </div>
-        
-        <!-- Restricted Access -->
-        <div class="link-section restricted">
-            <h2>RESTRICTED ACCESS</h2>
-            <a href="{{ site.baseurl }}/truth" class="classified">Access Point 01: The Truth</a>
-            <a href="{{ site.baseurl }}/classified" class="classified">Black Tapes: Classified Files</a>
-        </div>
-    </div>
-
-    <div class="neural-status">
-        <p>NEURAL LINK STATUS: <span class="status-text">CONNECTED</span></p>
-        <p>SAFETY BAND: <span class="status-text">ACTIVE</span></p>
-        <p>THOUGHT MONITORING: <span class="status-text">ENABLED</span></p>
-    </div>
-
-    <script>
-        // Add hover effect for restricted links
-        document.querySelectorAll('.classified').forEach(link => {
-            link.addEventListener('mouseover', () => {
-                const warning = document.createElement('div');
-                warning.className = 'access-warning';
-                warning.textContent = '[WARNING: CLEARANCE REQUIRED]';
-                link.appendChild(warning);
-            });
-            
-            link.addEventListener('mouseout', () => {
-                const warning = link.querySelector('.access-warning');
-                if (warning) warning.remove();
-            });
-        });
-
-        // Simulate neural status updates
-        setInterval(() => {
-            const statuses = document.querySelectorAll('.status-text');
-            statuses.forEach(status => {
-                if (Math.random() < 0.1) {
-                    status.style.opacity = '0.5';
-                    setTimeout(() => status.style.opacity = '1', 200);
-                }
-            });
-        }, 2000);
-    </script>
 </div>
+
+<script src="{{ '/assets/js/index.js' | relative_url }}"></script>

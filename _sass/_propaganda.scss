@@ -1,6 +1,11 @@
 // propaganda
 
-.content-wrapper {
+.propaganda-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('../images/backgrounds/05.jpg');
+}
+
+.propaganda {
     .propaganda-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -19,6 +24,7 @@
                 height: 100%;
                 object-fit: cover;
                 transition: transform 0.3s ease;
+                filter: grayscale(50%);
             }
             
             // Resistance notes styling
@@ -44,7 +50,7 @@
                 left: 0;
                 right: 0;
                 padding: 20px;
-                background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+                background: rgba(0, 0, 0, 0.7);
                 transform: translateY(101%);
                 transition: transform 0.3s ease;
                 z-index: 2;
@@ -77,6 +83,7 @@
                 
                 img {
                     transform: scale(1.05);
+                    filter: grayscale(0%);
                 }
                 
                 // Only show resistance note if poster is revealed
@@ -84,18 +91,6 @@
                     transform: translateY(0);
                     opacity: 1;
                 }
-            }
-            
-            &.scanning::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 2px;
-                background: red;
-                animation: scanPoster 2s linear infinite;
-                z-index: 1;
             }
             
             &.revealed {
@@ -118,158 +113,71 @@
         }
     }
 
-    .propaganda-header {
+    .resistance-hack {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.9);
         display: flex;
         align-items: center;
-        gap: 20px;
-        padding: 20px;
-        width: 100%;
-        max-width: 1000px;
-        box-sizing: border-box;
-
-        .seal {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+        
+        &.active {
+            opacity: 1;
+            visibility: visible;
         }
-
-        .title {
-            text-align: left;
-
-            h2 {
-                font-size: 1.5em;
-                color: red;
-                margin: 0 0 10px 0;
-            }
-
-            .subtitle {
-                font-family: monospace;
-                margin: 0;
-            }
-
-            .warning {
-                margin: 5px 0;
-                font-size: 1.1em;
-            }
-        }
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            text-align: center;
-            gap: 10px;
-            padding: 15px;
-
-            .seal {
-                width: 80px;
-                height: 80px;
-            }
-
-            .title {
-                text-align: center;
-
+        
+        .hack-content {
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(0, 40, 0, 0.3);
+            border: 2px solid #00ff00;
+            position: relative;
+            cursor: default;
+            
+            .resistance-message {
                 h2 {
-                    font-size: 1.2em;
+                    color: #00ff00;
+                    margin-bottom: 20px;
+                }
+                
+                p {
+                    margin-bottom: 15px;
+                    line-height: 1.4;
                 }
             }
-        }
-    }
-}
-
-.resistance-hack {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s ease;
-    
-    &.active {
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .hack-content {
-        max-width: 600px;
-        padding: 40px;
-        background: rgba(0, 40, 0, 0.3);
-        border: 2px solid #00ff00;
-        position: relative;
-        cursor: default;
-        
-        .glitch-text {
-            color: #00ff00;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            animation: glitch 0.3s infinite;
-        }
-        
-        .resistance-message {
-            h2 {
-                color: #00ff00;
-                margin-bottom: 20px;
-            }
             
-            p {
-                margin-bottom: 15px;
-                line-height: 1.4;
+            .hack-warning {
+                margin-top: 20px;
+                color: #ff0000;
+                font-family: monospace;
+                text-align: center;
+                opacity: 0.8;
+                font-size: 0.9em;
             }
         }
         
-        .hack-warning {
-            margin-top: 20px;
-            color: #ff0000;
+        &.active::before {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(0, 255, 0, 0.3);
             font-family: monospace;
-            text-align: center;
-            opacity: 0.8;
-            font-size: 0.9em;
+            font-size: 1.2em;
+            pointer-events: none;
+            animation: blink 2s infinite;
         }
     }
     
-    &.active::before {
-        content: '[CLICK OUTSIDE TO CLOSE]';
-        position: fixed;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: rgba(0, 255, 0, 0.3);
-        font-family: monospace;
-        font-size: 1.2em;
-        pointer-events: none;
-        animation: pulse 2s infinite;
-    }
-}
-
-@keyframes scanPoster {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(100%); }
-}
-
-@keyframes revealSymbol {
-    from { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes glitch {
-    0% { transform: translate(0); }
-    25% { transform: translate(-2px, 2px); }
-    50% { transform: translate(2px, -2px); }
-    75% { transform: translate(-2px, -2px); }
-    100% { transform: translate(0); }
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
-}
-
-@media (max-width: 768px) {
-    .propaganda-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+        .propaganda-grid {
+            grid-template-columns: 1fr;
+        }
     }
 }

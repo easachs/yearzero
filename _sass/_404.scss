@@ -1,9 +1,15 @@
-.error-container {
+// 404
+
+.notfound-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('../images/backgrounds/04.jpg');
+}
+
+.error {
     max-width: 600px;
     margin: 0 auto;
     padding: 40px;
     background: rgba(0, 0, 0, 0.3);
-    border: 2px solid red;
     text-align: center;
     position: relative;
     
@@ -27,12 +33,6 @@
         p {
             margin: 10px 0;
             font-size: 1.2em;
-        }
-        
-        .warning {
-            color: red;
-            font-weight: bold;
-            animation: blink 2s infinite;
         }
     }
     
@@ -62,33 +62,14 @@
             margin: 5px 0;
             font-size: 0.9em;
         }
-    }
-    
-    &.glitch {
-        animation: glitch 0.3s infinite;
-    }
-}
-
-@keyframes glitch {
-    0% { transform: translate(0); }
-    25% { transform: translate(-2px, 2px); }
-    50% { transform: translate(2px, -2px); }
-    75% { transform: translate(-2px, -2px); }
-    100% { transform: translate(0); }
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-@media (max-width: 768px) {
-    .error-container {
+    }   
+ 
+    @media (max-width: 768px) {
         margin: 20px;
         padding: 20px;
         
         h1 {
             font-size: 2em;
         }
-    }
-} 
+    } 
+}

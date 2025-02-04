@@ -1,0 +1,62 @@
+// memories
+
+.memories-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('../images/backgrounds/08.jpg');
+}
+
+.memories {
+    .memory-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        
+        h1 {
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .memory-fragment {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            margin-bottom: 30px;
+            animation: decrypt 1s forwards;
+            
+            h2 {
+                color: rgba(255, 0, 0, 1);
+                margin-bottom: 20px;
+                font-family: monospace;
+                cursor: pointer;
+                
+                &::after {
+                    content: ' [+]';
+                    font-size: 0.8em;
+                    opacity: 0.8;
+                }
+                
+                &.open::after {
+                    content: ' [-]';
+                }
+            }
+            
+            .fragment-content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-out;
+                
+                &.open {
+                    max-height: 5000px; // Adjust based on content length
+                    transition: max-height 1s ease-in;
+                }
+            }
+            
+            p {
+                text-align: left;
+                line-height: 1.4;
+                color: rgba(255, 255, 255, 0.9);
+            }
+        }
+    }
+}
