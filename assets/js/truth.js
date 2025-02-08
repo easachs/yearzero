@@ -33,17 +33,8 @@ document.querySelectorAll('.count').forEach(counter => {
     }, 10000);
 });
 
-// Add glitch effect to timeline entries
-function addGlitchEffect() {
-    const entries = document.querySelectorAll('.timeline-entry');
-    entries.forEach(entry => {
-        if (Math.random() < 0.1) {
-            entry.classList.add('glitch');
-            setTimeout(() => entry.classList.remove('glitch'), 200);
-        }
-    });
-}
-setInterval(addGlitchEffect, 3000);
+// Use glitch effect on timeline entries
+setInterval(() => addGlitchEffectTo('.timeline-entry'), 3000);
 
 // Neural interference effect
 function addNeuralInterference() {

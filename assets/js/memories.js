@@ -4,17 +4,8 @@ if (!['fragment_01', 'fragment_02', 'fragment_03']
     window.location.href = '{{ site.baseurl }}/';
 }
 
-// Add glitch effect to entries
-function addGlitchEffect() {
-    const entries = document.querySelectorAll('p');
-    entries.forEach(entry => {
-        if (Math.random() < 0.1) {
-            entry.classList.add('glitch');
-            setTimeout(() => entry.classList.remove('glitch'), 200);
-        }
-    });
-}
-setInterval(addGlitchEffect, 3000);
+// Use glitch effect on memories
+setInterval(() => addGlitchEffectTo('p'), 3000);
 
 // Neural interference effect
 function addNeuralInterference() {

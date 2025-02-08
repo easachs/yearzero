@@ -3,7 +3,7 @@ setTimeout(() => {
     document.querySelector('.resistance-hack').classList.add('active');
     
     // Countdown timer
-    let timeLeft = 20;
+    let timeLeft = 15;
     const countdown = document.querySelector('.countdown');
     window.hackTimer = setInterval(() => {
         timeLeft--;
@@ -26,23 +26,19 @@ function enablePosterReveal() {
                 const img = poster.querySelector('img');
                 const posterNum = img.src.match(/\/(\d+)\.jpg$/)[1];
                 img.src = img.src.replace('/propaganda/', '/resistance/');
-                
-                // Show resistance note
-                const note = poster.querySelector('p');
-                if (note) {
-                    note.style.opacity = '1';
-                    note.style.transform = 'translateY(0)';
-                }
             }
         });
     });
 }
 
+// Use glitch effect on resistance hack
+setInterval(() => addGlitchEffectTo('.resistance-message'), 3000);
+
 // Allow clicking outside hack content to close early
 document.querySelector('.resistance-hack').addEventListener('click', e => {
     if (!e.target.closest('.hack-content')) {
         document.querySelector('.resistance-hack').classList.remove('active');
-        clearInterval(window.hackTimer);  // Clear the countdown timer
-        enablePosterReveal();  // Enable poster clicking immediately
+        clearInterval(window.hackTimer);
+        enablePosterReveal();
     }
 });

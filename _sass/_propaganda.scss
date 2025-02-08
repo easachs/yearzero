@@ -8,9 +8,13 @@
 .propaganda {
     .propaganda-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: 1fr;
         gap: 20px;
         padding: 20px;
+        
+        @media (min-width: 769px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
         
         .poster-container {
             position: relative;
@@ -25,23 +29,6 @@
                 object-fit: cover;
                 transition: transform 0.3s ease;
                 filter: grayscale(50%);
-            }
-            
-            // Resistance notes styling
-            p {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                padding: 15px;
-                margin: 0;
-                background: rgba(0, 40, 0, 0.8);
-                color: #00ff00;
-                font-family: monospace;
-                transform: translateY(100%);
-                opacity: 0;
-                transition: transform 0.3s ease, opacity 0.3s ease;
-                z-index: 3;
             }
             
             .poster-overlay {
@@ -85,29 +72,21 @@
                     transform: scale(1.05);
                     filter: grayscale(0%);
                 }
-                
-                // Only show resistance note if poster is revealed
-                &.revealed p {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
             }
             
             &.revealed {
                 img {
-                    filter: none;
                     transform: scale(1);
+
+                    &:hover {
+                        filter: grayscale(0%);
+                        transform: scale(1.05);
+                    }
                 }
                 
                 .poster-overlay {
                     opacity: 0;
                     visibility: hidden;
-                }
-                
-                // Show resistance note when revealed
-                &:hover p {
-                    transform: translateY(0);
-                    opacity: 1;
                 }
             }
         }
@@ -126,6 +105,7 @@
         opacity: 0;
         visibility: hidden;
         transition: all 0.5s ease;
+        z-index: 3;
         
         &.active {
             opacity: 1;

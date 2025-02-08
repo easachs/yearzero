@@ -64,3 +64,14 @@ function checkAllFragments() {
 
 // Check for fragments on page load
 document.addEventListener('DOMContentLoaded', checkAllFragments);
+
+// Glitch effect
+function addGlitchEffectTo(selector, probability = 0.1, duration = 200) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+        if (Math.random() < probability) {
+            element.classList.add('glitch');
+            setTimeout(() => element.classList.remove('glitch'), duration);
+        }
+    });
+}
