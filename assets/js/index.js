@@ -23,3 +23,8 @@ setInterval(() => {
         }
     });
 }, 2000);
+
+document.querySelector('#memories').classList.add('glitch');
+setTimeout(() => {
+    document.querySelector('#memories').classList.remove('glitch');
+}, 500);

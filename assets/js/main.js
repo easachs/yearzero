@@ -42,28 +42,27 @@ function showFragmentNotification(message) {
     document.body.appendChild(notification);
     setTimeout(() => notification.remove(), 3000);
     
-    // Check if all fragments are collected
-    checkAllFragments();
+    // Check for any fragments
+    checkForFragments();
 }
 
-// Check for all fragments
-function checkAllFragments() {
-    const hasAllFragments = ['fragment_01', 'fragment_02', 'fragment_03']
-        .every(f => localStorage.getItem(f) === 'true');
+// Check for any fragments
+function checkForFragments() {
+    const hasAnyFragment = ['fragment_01', 'fragment_02', 'fragment_03']
+        .some(f => localStorage.getItem(f) === 'true');
     
-    if (hasAllFragments) {
-        // Show the memories link on the index page if we're there
+    if (hasAnyFragment) {
+        // Show the memories link on the index page
         const restrictedDiv = document.querySelector('.restricted');
         if (restrictedDiv) {
             const memoriesLink = document.querySelector('.hidden');
-            memoriesLink.classList.add('glitch');
             memoriesLink.classList.remove('hidden');
         }
     }
 }
 
 // Check for fragments on page load
-document.addEventListener('DOMContentLoaded', checkAllFragments);
+document.addEventListener('DOMContentLoaded', checkForFragments);
 
 // Glitch effect
 function addGlitchEffectTo(selector, probability = 0.1, duration = 200) {

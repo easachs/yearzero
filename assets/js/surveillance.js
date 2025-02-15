@@ -60,8 +60,6 @@ function initSurveillance() {
         const sector = e.target.closest('.sector');
         if (sector) {
             handleSectorClick(sector, updateLog);
-        } else if (e.target.tagName === 'IMG' && e.target.src.includes('surveillance')) {
-            alert("WARNING: Accessing surveillance feeds is prohibited. Your activity has been logged.");
         }
     });
 }

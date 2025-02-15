@@ -1,0 +1,108 @@
+---
+layout: home
+permalink: /initiative
+---
+
+<div class="page-background initiative-bg"></div>
+<div class="content-wrapper">
+    <div class="initiative">
+        <div class="header">
+            <a href="{{ site.baseurl }}/">
+                <img src="{{ site.baseurl }}/assets/images/seals/dov.png" alt="Department of Virtue Seal" class="seal">
+            </a>
+            <div class="title">
+                <h2><span class="echo2">DEPARTMENT</span> OF <span class="echo">VIRTUE</span></h2>
+                <p class="subtitle">THE <span class="echo3">VIRTUE</span> INITIATIVE</p>
+                <p>Building a Better You, for a Better Society.</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="hero">
+                <div class="carousel">
+                  <div class="carousel-item">
+                      <img src="{{ site.baseurl }}/assets/images/initiative/01.jpg">
+                  </div>
+                </div>
+                <div class="welcome">
+                    <h2>The Enclave: A New Haven for A <span class="echo">New</span> <span class="echo">You</span></h2>
+                    <p>The Enclave is a state-of-the-art community designed for citizens who embody the highest
+                      standards of <span class="echo2">virtue</span>. Here, you'll enjoy unparalleled
+                      <span class="echo">safety</span>, luxury, and opportunity — all thanks to your unwavering
+                      adherence to the State.</p>
+
+                    <h2>Benefits of Membership</h2>
+                    <ul>
+                        <li>Priority Housing: Access to <span class="echo">luxury</span> living with state-of-the-art
+                          facilities</li>
+                        <li>Enhanced Security: Enjoy 24/7 surveillance for your safety and peace of mind</li>
+                        <li>Exclusive Education: Give your children access to elite New Doctrine schools</li>
+                        <li>Social Prestige: Be recognized as a <span class="echo3">model citizen</span> and leader in
+                          your community</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="testimonials">
+              <h2><span class="echo3">Testimonials</span></h2>
+              <div class="testimonial">
+                <p>"The <span class="echo">Virtue Initiative</span> has transformed my life. I feel more <span
+                    class="echo2">connected</span> to society than ever before. I'm a new person!"</p>
+              </div>
+              <div class="testimonial">
+                <p>"I used to struggle with <span class="echo3">doubts</span>, but now I feel like I'm finally myself.
+                  Or, at least, myself in the eyes of the <span class="echo">State</span>."</p>
+              </div>
+            </div>
+            <div class="quiz">
+                <h2>Assessment</h2>
+                <form id="form">
+                    <div class="questions">
+                        <div class="question">
+                            <p>You've been volunteering for community surveillance duty, monitoring your neighbors to
+                              ensure compliance with the New <span class="echo">Doctrine</span>. Do you feel fulfilled
+                              knowing that your efforts contribute to societal stability?</p>
+                            <p><label><input type="radio" name="q1" value="yes"> I feel fulfilled contributing to the
+                              collective good.</label></p>
+                            <p><label><input type="radio" name="q1" value="no"> I do not feel fulfilled by these
+                              tasks.</label></p>
+                        </div>
+                        <div class="question">
+                            <p>While walking home, you overhear a neighbor expressing <span class="echo3">doubts</span>
+                              about the New Doctrine. According to the Department, such behavior is considered
+                              suspicious and must be reported. What do you do?</p>
+                              <p><label><input type="radio" name="q2" value="no"> I would not report them; it's not my
+                                place to intervene.</label></p>
+                              <p><label><input type="radio" name="q2" value="yes"> I would report them to maintain
+                                societal harmony.</label></p>
+                        </div>
+                        <div class="question">
+                            <p>You've been having recurring dreams where society is less structured and more chaotic.
+                              These memories conflict with the Virtue Initiative, which emphasizes the importance of
+                              <span class="echo2">order</span> and compliance. What do you do?</p>
+                              <p><label><input type="radio" name="q3" value="no"> I discuss the memories with a trusted
+                                friend.</label></p>
+                              <p><label><input type="radio" name="q3" value="yes"> I immediately report the dreams to the
+                                authorities.</label></p>
+                        </div>
+                        <div class="question">
+                          <p>You discover that a close family member has been secretly attending
+                            <span class="key-word">resistance</span> meetings. According to the Virtue Initiative, this
+                            is a serious infraction that threatens societal stability. Would you report your family
+                            member to the authorities?</p>
+                          <p><label><input type="radio" name="q4" value="no"> I would not report them; loyalty to
+                            family comes first.</label></p>
+                          <p><label><input type="radio" name="q4" value="yes"> I would report them to protect societal
+                            <span class="echo">harmony</span>.</label></p>
+                        </div>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+                <div id="result" class="hidden">
+                    <h3>Score: <span id="score"></span></h3>
+                    <p id="result-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ '/assets/js/initiative.js' | relative_url }}"></script>

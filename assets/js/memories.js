@@ -1,7 +1,8 @@
-// Verify all fragments are collected
-if (!['fragment_01', 'fragment_02', 'fragment_03']
-    .every(f => localStorage.getItem(f) === 'true')) {
-    window.location.href = '{{ site.baseurl }}/';
+// Verify at least one fragment is collected
+if (!['fragment_01', 'fragment_02', 'fragment_03', 'fragment_04']
+    .some(f => localStorage.getItem(f) === 'true')) {
+    const baseurl = document.querySelector('.content-wrapper').dataset.baseurl;
+    window.location.href = `${baseurl}/404`;
 }
 
 // Use glitch effect on memories
@@ -24,6 +25,25 @@ setInterval(addNeuralInterference, 3000);
 // Set up collapsible fragments
 document.addEventListener('DOMContentLoaded', () => {
     const fragments = document.querySelectorAll('.memory-fragment');
+    let visibleFragments = 0;
+    
+    fragments.forEach(fragment => {
+        const fragmentId = fragment.id;
+        // IDs now match localStorage keys exactly
+        const storageKey = fragmentId;
+        
+        if (!localStorage.getItem(storageKey)) {
+            fragment.style.display = 'none';
+        } else {
+            visibleFragments++;
+        }
+    });
+    
+    // Show message if no fragments are visible
+    const noFragmentsMessage = document.getElementById('no-fragments-message');
+    if (noFragmentsMessage) {
+        noFragmentsMessage.style.display = visibleFragments === 0 ? 'block' : 'none';
+    }
     
     fragments.forEach(fragment => {
         const header = fragment.querySelector('h2');

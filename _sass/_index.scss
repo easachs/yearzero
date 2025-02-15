@@ -6,18 +6,20 @@
 }
 
 .index {
-    .manifesto {
-        font-size: 1.2em;
-        margin: 20px 0;
-    
-        a {
-            text-decoration: none;
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.5em;
+            margin: 0;
         }
     }
-    
+
     .department-seal {
         margin: 40px 0 0 0;
         text-align: center;
+
+        @media (max-width: 768px) {
+            margin: 20px 0 0 0;
+        }
         
         .seal {
             width: 150px;

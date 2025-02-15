@@ -7,7 +7,7 @@ function updateTimestamp() {
 setInterval(updateTimestamp, 1000);
 
 // Add glitch effect on load
-document.querySelector('.error').classList.add('glitch');
+document.querySelector('.error-content').classList.add('glitch');
 setTimeout(() => {
-    document.querySelector('.error').classList.remove('glitch');
-}, 1000);
+    document.querySelector('.error-content').classList.remove('glitch');
+}, 500);
